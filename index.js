@@ -1,7 +1,12 @@
 const express = require('express')
+const bodyParser = require("body-parser")
+
 const app = express()
-app.all('/', (req, res) => {
-    console.log("Just got a request!")
-    res.send('Yo!')
+app.use(bodyParser.json())
+
+app.post("/stockUpdated", (req, res) => {
+    console.log(req.body)
+    res.status(200).end()
 })
+
 app.listen(process.env.PORT || 3000)
