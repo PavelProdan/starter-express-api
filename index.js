@@ -9,4 +9,9 @@ app.post("/stockUpdated", (req, res) => {
     res.status(200).end()
 })
 
+app.post("/workerStock", (req, res) => {
+    console.log(req.body)
+    res.status(200).end()
+})
+
 app.listen(process.env.PORT || 3000)
