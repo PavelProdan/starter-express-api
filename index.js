@@ -14,4 +14,10 @@ app.post("/workerStock", (req, res) => {
     res.status(200).end()
 })
 
+app.post("/fireworq", (req, res) => {
+    console.log(req.body)
+    res.setHeader('Content-Type', 'application/json')
+    res.status(200).end(JSON.stringify({"status":"success","message":"It's working!"}))
+})
+
 app.listen(process.env.PORT || 3000)
