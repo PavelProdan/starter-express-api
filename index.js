@@ -17,7 +17,13 @@ app.post("/workerStock", (req, res) => {
 app.post("/fireworq", (req, res) => {
     console.log(req.body)
     res.setHeader('Content-Type', 'application/json')
-    res.status(200).end(JSON.stringify({"status":"success","message":"It's working!"}))
+    res.status(200).end(JSON.stringify({"status":"success","message":"ok"}))
+})
+
+app.post("/fail-fireworq", (req, res) => {
+    console.log(req.body)
+    res.setHeader('Content-Type', 'application/json')
+    res.status(200).end(JSON.stringify({"status":"failure","message":"temp fail"}))
 })
 
 app.listen(process.env.PORT || 3000)
