@@ -18,15 +18,25 @@ app.get("/cyclicapi", (req, res) => {
     res.status(200).end(JSON.stringify({"product_id": "1234"}))
 })
 
-app.get('/testcyclic', async (req, res) => {
+const callApi = async (productid) => {
     try {
-      const response = await axios.get('https://dummyjson.com/products/1');
-      console.log(response.data); // Log the fetched data to the console
-      res.json(response.data); // Send the data as a JSON response to the client
-    } catch (error) {
-      console.error('Error fetching data:', error.message);
-      res.status(500).json({ error: 'Failed to fetch data' });
-    }
+        const response = await axios.get(`https://dummyjson.com/products/${productid}`);
+        console.log(response.data); // Log the fetched data to the console
+        return response.data
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+        return error.message
+      }
+
+}
+
+app.get('/testcyclic', async (req, res) => {
+ 
+  for (let i = 0; i < 10; i++) {
+    const random = Math.floor(Math.random() * 50) + 1;
+    const response = await callApi(random+i)
+  }
+    res.status(200).end("ok")
   });
 
 
