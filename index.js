@@ -14,8 +14,9 @@ app.post("/stockUpdated", (req, res) => {
 
 app.get("/cyclicapi", (req, res) => {
     // get some josn response from a dummy data source and retunr the product id
-    res.setHeader('Content-Type', 'application/json')
-    res.status(200).end(JSON.stringify({"product_id": "1234"}))
+    const random = Math.floor(Math.random() * 1000) + 1;
+
+    res.status(200).end(JSON.stringify({"product_id": random}))
 })
 
 const callApi = async (productid) => {
@@ -29,6 +30,17 @@ const callApi = async (productid) => {
       }
 
 }
+
+app.get('/testcache', async (req, res) => {
+  try {
+    const response = await axios.get('https://dummyjson.com/products/1');
+    console.log(response.data); // Log the fetched data to the console
+    res.json(response.data); // Send the data as a JSON response to the client
+  } catch (error) {
+    console.error('Error fetching data:', error.message);
+    res.status(500).json({ error: 'Failed to fetch data' });
+  }
+});
 
 app.get('/testcyclic', async (req, res) => {
  
