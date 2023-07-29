@@ -12,6 +12,7 @@ app.post("/stockUpdated", (req, res) => {
 })
 
 app.post("/testapi", (req, res) => {
+    console.log("I got a request")
     // wait for one second before responding
     setTimeout(() => {
         // return a random number between 1 and 100 as request result
@@ -30,14 +31,12 @@ app.get("/cyclicapi", (req, res) => {
     fetch("https://bb98-84-232-178-165.ngrok-free.app/testapi", {
         method: "POST",
         // share to body the value of i
-        body: JSON.stringify({i}),
+        
     })
-    .then(res => res.json())
-    .then(data => console.log("index:",i,"data:",data.result))
+    .then(res => console.log(res.json()))
 }
 
     res.status(200).end(JSON.stringify({"status":"success","message":"ok"}))
-    console.log("end =====================")
 })
 
 
