@@ -23,18 +23,14 @@ app.post("/testapi", (req, res) => {
 })
 
 app.get("/cyclicapi", (req, res) => {
-    console.log("NEW =====================")
-    // make a post request to "https://bb98-84-232-178-165.ngrok-free.app/testapi". This return a json object like this
-    // { "result": 40 }
-    // then console log the result
+    
     for(let i = 0; i < 100; i++){
-    fetch("https://bb98-84-232-178-165.ngrok-free.app/testapi", {
-        method: "POST",
-        // share to body the value of i
-        
-    })
-    .then(res => console.log(res.json()))
-}
+        fetch('https://dummyjson.com/products/1')
+        .then(res => res.json())
+        .then(json => console.log(json));
+
+    }
+    
 
     res.status(200).end(JSON.stringify({"status":"success","message":"ok"}))
 })
