@@ -15,6 +15,7 @@ app.post("/testapi", (req, res) => {
     // wait for one second before responding
     setTimeout(() => {
         // return a random number between 1 and 100 as request result
+        console.log(req.body)
         res.json({result: Math.ceil(Math.random() * 100)})
 
     }, 10)
@@ -25,9 +26,11 @@ app.get("/cyclicapi", (req, res) => {
     // make a post request to "https://bb98-84-232-178-165.ngrok-free.app/testapi". This return a json object like this
     // { "result": 40 }
     // then console log the result
-    for(let i = 0; i < 70; i++){
+    for(let i = 0; i < 100; i++){
     fetch("https://bb98-84-232-178-165.ngrok-free.app/testapi", {
         method: "POST",
+        // share to body the value of i
+        body: JSON.stringify({i}),
     })
     .then(res => res.json())
     .then(data => console.log("index:",i,"data:",data.result))
