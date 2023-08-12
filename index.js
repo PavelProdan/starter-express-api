@@ -1,11 +1,21 @@
 const express = require('express')
 const axios = require('axios');
 const bodyParser = require("body-parser")
+const rateLimit = require('express-rate-limit');
+
 
 const app = express()
 app.use(bodyParser.json())
+app.use(limiter);
+
 
 console.log("Starting server")
+
+const limiter = rateLimit({
+  windowMs: 1000, // 1 second window
+  max: 1,         // 1 request per windowMs
+  message: 'Too many requests from this IP, please try again in a moment.',
+});
 
 app.post("/stockUpdated", (req, res) => {
     console.log(req.body)
