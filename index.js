@@ -6,8 +6,6 @@ const rateLimit = require('express-rate-limit');
 
 const app = express()
 app.use(bodyParser.json())
-app.use(limiter);
-
 
 console.log("Starting server")
 
@@ -16,6 +14,8 @@ const limiter = rateLimit({
   max: 1,         // 1 request per windowMs
   message: 'Too many requests from this IP, please try again in a moment.',
 });
+app.use(limiter);
+
 
 app.post("/stockUpdated", (req, res) => {
     console.log(req.body)
