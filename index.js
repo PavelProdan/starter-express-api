@@ -19,7 +19,7 @@ app.get("/cyclicapi", (req, res) => {
     res.status(200).end(JSON.stringify({"product_id": random}))
 })
 
-app.get("/upstash", (req, res) => {
+app.post("/upstash", (req, res) => {
   // wait for 2 seconds before returning the response
   console.log("Got a new request")
   setTimeout(() => {
