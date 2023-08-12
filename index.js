@@ -21,7 +21,9 @@ app.get("/cyclicapi", (req, res) => {
 
 app.get("/upstash", (req, res) => {
   // wait for 2 seconds before returning the response
+  console.log("Got a new request")
   setTimeout(() => {
+    console.log("Job done")
     res.status(200).end(JSON.stringify({"status": "ok"}))
   }, 2000)
 })
