@@ -19,6 +19,13 @@ app.get("/cyclicapi", (req, res) => {
     res.status(200).end(JSON.stringify({"product_id": random}))
 })
 
+app.get("/upstash", (req, res) => {
+  // wait for 2 seconds before returning the response
+  setTimeout(() => {
+    res.status(200).end(JSON.stringify({"status": "ok"}))
+  }, 2000)
+})
+
 const callApi = async (productid) => {
     try {
         const response = await axios.get(`https://dummyjson.com/products/${productid}`);
